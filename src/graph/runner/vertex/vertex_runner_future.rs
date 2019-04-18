@@ -5,6 +5,7 @@ use super::*;
 pub enum VertexRunnerFuture {
     Graph(<GraphRunner as IntoFuture>::Future),
     OsProcess(<OsProcessRunner as IntoFuture>::Future),
+    StdStage(<StdStageRunner as IntoFuture>::Future),
 }
 
 impl Future for VertexRunnerFuture {
@@ -16,6 +17,7 @@ impl Future for VertexRunnerFuture {
         match *self {
             VertexRunnerFuture::Graph(ref mut inner) => inner.poll(),
             VertexRunnerFuture::OsProcess(ref mut inner) => inner.poll(),
+            VertexRunnerFuture::StdStage(ref mut inner) => inner.poll().map_err(|err| err.into()),
         }
     }
 }

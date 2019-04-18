@@ -8,6 +8,9 @@ pub enum RunnerError {
     #[fail(display = "RunnerError::OsProcessError")]
     OsProcessError(#[cause] os_process::OsProcessError),
 
+    #[fail(display = "RunnerError::StdStageRunnerError")]
+    StdStageRunnerError(#[cause] StdStageRunnerError),
+
     #[fail(display = "RunnerError::Generic")]
     Generic(#[cause] failure::Error),
 
@@ -24,5 +27,11 @@ impl From<GraphDefinitionError> for RunnerError {
 impl From<os_process::OsProcessError> for RunnerError {
     fn from(inner: os_process::OsProcessError) -> Self {
         RunnerError::OsProcessError(inner)
+    }
+}
+
+impl From<StdStageRunnerError> for RunnerError {
+    fn from(inner: StdStageRunnerError) -> Self {
+        RunnerError::StdStageRunnerError(inner)
     }
 }

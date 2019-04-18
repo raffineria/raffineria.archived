@@ -16,4 +16,7 @@ pub enum RunSpec {
 
     #[serde(rename = "graph")]
     Graph(Box<GraphSpec>),
+
+    #[serde(rename = "std")]
+    StdStage(StdStageSpec),
 }

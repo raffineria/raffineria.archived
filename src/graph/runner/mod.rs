@@ -14,5 +14,8 @@ pub use graph::{GraphRunner, GraphRunnerFuture};
 mod os_process;
 pub use os_process::{OsProcessRunner, OsProcessRunnerFuture};
 
+mod std_stage;
+pub use std_stage::{StdStageRunner, StdStageRunnerError, StdStageRunnerFuture};
+
 mod vertex;
 pub use vertex::{VertexRunner, VertexRunnerFuture};

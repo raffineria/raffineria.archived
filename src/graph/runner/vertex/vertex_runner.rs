@@ -9,6 +9,7 @@ use graph_channels::{ConsumerChannels, ProducerChannels};
 pub enum VertexRunner {
     Graph(GraphRunner),
     OsProcess(OsProcessRunner),
+    StdStage(StdStageRunner),
 }
 
 impl VertexRunner {
@@ -35,6 +36,10 @@ impl VertexRunner {
                 inlets,
                 outlets,
             )),
+
+            RunSpec::StdStage(ref std_stage_spec) => {
+                VertexRunner::StdStage(StdStageRunner::new(std_stage_spec.clone(), inlets, outlets))
+            }
         }
     }
 }
@@ -52,6 +57,9 @@ impl IntoFuture for VertexRunner {
             }
             VertexRunner::OsProcess(os_process_runner) => {
                 VertexRunnerFuture::OsProcess(os_process_runner.into_future())
+            }
+            VertexRunner::StdStage(std_stage) => {
+                VertexRunnerFuture::StdStage(std_stage.into_future())
             }
         }
     }

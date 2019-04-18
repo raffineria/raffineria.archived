@@ -8,11 +8,15 @@ extern crate failure;
 extern crate lazy_static;
 
 pub mod config;
+pub mod spec;
+
 pub mod futures;
+
+pub mod protocol;
+
 pub mod graph;
 pub mod os_process;
-pub mod protocol;
-pub mod spec;
+pub mod std_stages;
 
 pub mod cli;
 pub mod util;

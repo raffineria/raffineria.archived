@@ -7,6 +7,9 @@ pub use port_spec::PortSpec;
 mod run_spec;
 pub use run_spec::RunSpec;
 
+mod std_stage_spec;
+pub use std_stage_spec::StdStageSpec;
+
 mod restart_strategy_spec;
 pub use restart_strategy_spec::RestartStrategySpec;
 
